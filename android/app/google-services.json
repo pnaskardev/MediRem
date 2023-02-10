@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "906107278895",
+    "project_id": "medirem-6391d",
+    "storage_bucket": "medirem-6391d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906107278895:android:12ec6b3ccf0106c8b798da",
+        "android_client_info": {
+          "package_name": "com.medirem.priyanshunaskar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906107278895-791f2e1mr6r1pjg1bd80pf6otk636vdi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAw3A1QhJTXS4wXB0a28gxOshT1yiZcv8A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906107278895-791f2e1mr6r1pjg1bd80pf6otk636vdi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
