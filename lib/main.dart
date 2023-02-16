@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterfire_ui/auth.dart';
 import 'package:medi_rem/auth_gate.dart';
+import 'package:medi_rem/common/navbar/bloc/cubit/navigation_cubit.dart';
 import 'package:medi_rem/features/home/screens/home_screen.dart';
 import 'package:medi_rem/firebase_options.dart';
 
@@ -15,7 +17,9 @@ Future<void> main() async
   );
   FlutterFireUIAuth.configureProviders
   ([
+    const EmailProviderConfiguration(),
     const PhoneProviderConfiguration(),
+    
   ]);
   runApp(const MyApp());
 }
@@ -26,14 +30,22 @@ class MyApp extends StatelessWidget
   @override
   Widget build(BuildContext context) 
   {
-    return MaterialApp
+    return MultiBlocProvider
     (
-      title: 'MediRem',
-      theme: ThemeData
+      providers: 
+      [
+        BlocProvider(create:(BuildContext context) => NavigationCubit()),
+      ],
+      child: MaterialApp
       (
-        primarySwatch: Colors.blue,
+        title: 'MediRem',
+        theme: ThemeData
+        (
+          useMaterial3: true,
+          primarySwatch: Colors.blue,
+        ),
+        home: const AuthGate(),
       ),
-      home: const AuthGate(),
     );
   }
 }
