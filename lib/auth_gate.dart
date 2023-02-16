@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart';
+import 'package:medi_rem/common/navbar/page/bottom_nav_bar.dart';
 import 'package:medi_rem/features/home/screens/home_screen.dart';
 
 class AuthGate extends StatelessWidget 
@@ -22,11 +23,12 @@ class AuthGate extends StatelessWidget
             (
               providerConfigs: 
               [
-                PhoneProviderConfiguration()
+                EmailProviderConfiguration(),
+                PhoneProviderConfiguration(),
               ],
             );
           }
-          return const HomePage();
+          return const AppBottomNavBar();
         },
       ),
     );
