@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterfire_ui/auth.dart';
 import 'package:medi_rem/auth_gate.dart';
 import 'package:medi_rem/common/navbar/bloc/cubit/navigation_cubit.dart';
-import 'package:medi_rem/features/home/screens/home_screen.dart';
 import 'package:medi_rem/firebase_options.dart';
+import 'package:medi_rem/utils/colors.dart';
 
 
 Future<void> main() async 
@@ -42,8 +42,9 @@ class MyApp extends StatelessWidget
         theme: ThemeData
         (
           useMaterial3: true,
-          primarySwatch: Colors.blue,
+          primaryColor: primaryColor,
         ),
+        themeMode: ThemeMode.system,
         home: const AuthGate(),
       ),
     );
