@@ -18,8 +18,6 @@ Future<void> main() async
   FlutterFireUIAuth.configureProviders
   ([
     const EmailProviderConfiguration(),
-    const PhoneProviderConfiguration(),
-    
   ]);
   runApp(const MyApp());
 }

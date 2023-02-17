@@ -24,7 +24,6 @@ class AuthGate extends StatelessWidget
               providerConfigs: 
               [
                 EmailProviderConfiguration(),
-                PhoneProviderConfiguration(),
               ],
             );
           }
