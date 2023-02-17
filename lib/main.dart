@@ -6,6 +6,7 @@ import 'package:medi_rem/auth_gate.dart';
 import 'package:medi_rem/common/navbar/bloc/cubit/navigation_cubit.dart';
 import 'package:medi_rem/firebase_options.dart';
 import 'package:medi_rem/utils/colors.dart';
+import 'package:medi_rem/utils/themes.dart';
 
 
 Future<void> main() async 
@@ -37,11 +38,8 @@ class MyApp extends StatelessWidget
       child: MaterialApp
       (
         title: 'MediRem',
-        theme: ThemeData
-        (
-          useMaterial3: true,
-          primaryColor: primaryColor,
-        ),
+        debugShowCheckedModeBanner: false,
+        theme: Themes.lightTheme,
         themeMode: ThemeMode.system,
         home: const AuthGate(),
       ),

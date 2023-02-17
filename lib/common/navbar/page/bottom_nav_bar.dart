@@ -3,7 +3,9 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medi_rem/common/navbar/bloc/cubit/navigation_cubit.dart';
+import 'package:medi_rem/features/add_medicine/add_medicine.dart';
 import 'package:medi_rem/features/home/screens/home_screen.dart';
+import 'package:medi_rem/features/search/search_screen.dart';
 import 'package:medi_rem/features/settings/screens/settings_page.dart';
 
 class AppBottomNavBar extends StatefulWidget 
@@ -43,6 +45,8 @@ class _AppBottomNavBarState extends State<AppBottomNavBar>
           children: const
           [
             HomePage(),
+            AddMedicine(),
+            SearchScreen(),
             SettingsPage()
           ],
           onPageChanged: (index)
@@ -81,6 +85,16 @@ class _AppBottomNavBarState extends State<AppBottomNavBar>
                 (
                   icon: Icon(Icons.home),
                   label: 'Home',
+                ),
+                NavigationDestination
+                (
+                  icon: Icon(Icons.add_alarm),
+                  label: 'Add Medication',
+                ),
+                NavigationDestination
+                (
+                  icon: Icon(Icons.search_rounded),
+                  label: 'Search',
                 ),
                 NavigationDestination
                 (
