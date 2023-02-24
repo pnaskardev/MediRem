@@ -10,8 +10,9 @@ class UserDataBloc extends Bloc<UserDataEvent, UserDataState>
 {
   UserDataBloc() : super(const UserDataState()) 
   {
-    on<UserDataEvent>((event, emit) {
-      // TODO: implement event handler
+    on<UserDataEvent>((event, emit) 
+    {
+      
     });
   }
 }

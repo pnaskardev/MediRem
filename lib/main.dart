@@ -5,11 +5,14 @@ import 'package:flutterfire_ui/auth.dart';
 import 'package:medi_rem/auth_gate.dart';
 import 'package:medi_rem/common/navbar/bloc/cubit/navigation_cubit.dart';
 import 'package:medi_rem/firebase_options.dart';
+import 'package:medi_rem/logic/app_bloc/app_bloc.dart';
 import 'package:medi_rem/logic/medicine_bloc/medicine_bloc.dart';
 import 'package:medi_rem/logic/user_data_bloc/user_data_bloc.dart';
+import 'package:medi_rem/repository/auth_repository.dart';
 import 'package:medi_rem/utils/themes.dart';
 
-Future<void> main() async {
+Future<void> main() async 
+{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -17,27 +20,41 @@ Future<void> main() async {
   FlutterFireUIAuth.configureProviders([
     const EmailProviderConfiguration(),
   ]);
-  runApp(const MyApp());
+  final _authRepository=AuthRepository();
+  runApp(MyApp(authRepository: _authRepository,));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatelessWidget 
+{
+  final AuthRepository _authRepository;
+  const MyApp({super.key,required authRepository})
+  : _authRepository=authRepository;
   @override
-  Widget build(BuildContext context) {
-    return MultiBlocProvider
+  Widget build(BuildContext context) 
+  {
+    return RepositoryProvider.value
     (
-      providers: 
-      [
-        BlocProvider(create: (BuildContext context) => NavigationCubit()),
-        BlocProvider(create: (BuildContext context) => UserDataBloc()),
-        BlocProvider(create: (BuildContext context) => MedicineBloc()),
-      ],
-      child: MaterialApp(
-        title: 'MediRem',
-        debugShowCheckedModeBanner: false,
-        theme: Themes.lightTheme,
-        home: const AuthGate(),
-      ),
+      value: _authRepository,
+      child: MultiBlocProvider
+      (
+        providers: 
+        [
+          BlocProvider(create: (BuildContext context) => AppBloc
+          (
+            authRepository: _authRepository
+          )),
+          BlocProvider(create: (BuildContext context) => NavigationCubit()),
+          BlocProvider(create: (BuildContext context) => UserDataBloc()),
+          BlocProvider(create: (BuildContext context) => MedicineBloc()),
+        ],
+        child: MaterialApp
+        (
+          title: 'MediRem',
+          debugShowCheckedModeBanner: false,
+          theme: Themes.lightTheme,
+          home: AuthGate(authRepository:_authRepository),
+        ),
+      )
     );
   }
 }

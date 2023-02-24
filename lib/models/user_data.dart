@@ -1,8 +1,18 @@
+import 'package:equatable/equatable.dart';
 import 'package:medi_rem/models/medicine.dart';
 
-class UserData {
-  String uid;
-  String email;
-  List<Medicine>? medicineList;
-  UserData({required this.uid, required this.email,this.medicineList});
+class UserData extends Equatable
+{
+  final String uid;
+  final String? email;
+  final List<Medicine>? medicineList;
+  const UserData({required this.uid, this.email,this.medicineList});
+
+  static const  empty =UserData(uid:'');
+
+  bool get isEmpty=> this==UserData.empty;
+  bool get isNotEmpty=> this!=UserData.empty;
+  
+  @override
+  List<Object?> get props => [uid, email!,medicineList!];
 }
