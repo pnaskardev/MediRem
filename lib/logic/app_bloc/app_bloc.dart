@@ -50,4 +50,10 @@ class AppBloc extends Bloc<AppEvent, AppState>
     
   }
 
+  
+    get getUser
+    {
+      return state.user;
+    }
+
 }

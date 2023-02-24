@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterfire_ui/auth.dart';
 import 'package:medi_rem/common/navbar/page/bottom_nav_bar.dart';
 import 'package:medi_rem/logic/app_bloc/app_bloc.dart';
+import 'package:medi_rem/models/user_data.dart';
 import 'package:medi_rem/repository/auth_repository.dart';
 
 class AuthGate extends StatelessWidget 
@@ -17,10 +18,10 @@ class AuthGate extends StatelessWidget
   {
     return SafeArea
     (
-      child: StreamBuilder<User?>
+      child: StreamBuilder<UserData?>
       (
         // stream: FirebaseAuth.instance.authStateChanges(),
-        stream: _authRepository.getFirebaseUser,
+        stream: _authRepository.getUser,
         builder: (context, snapshot) 
         {
           if (!snapshot.hasData) 

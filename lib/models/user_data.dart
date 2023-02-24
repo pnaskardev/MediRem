@@ -14,5 +14,5 @@ class UserData extends Equatable
   bool get isNotEmpty=> this!=UserData.empty;
   
   @override
-  List<Object?> get props => [uid, email!,medicineList!];
+  List<Object?> get props => [uid, email,medicineList];
 }

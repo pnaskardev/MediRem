@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:medi_rem/models/user_data.dart';
 
@@ -12,22 +14,19 @@ class AuthRepository
 
   Stream<UserData> get getUser
   {
+    log('getUser started');
     return _firebaseAuth.authStateChanges().map((firebaseUser)
     {
       final user=firebaseUser==null?UserData.empty:firebaseUser.toUserData;
       currentUser=user;
+      log(currentUser.uid);
       return user;
     });
   }
 
   Stream<User?> get getFirebaseUser
   {
-    // return _firebaseAuth.authStateChanges().map((firebaseUser)
-    // {
-    //   final user=firebaseUser==null?UserData.empty:firebaseUser.toUserData;
-    //   currentUser=user;
-    //   return user;
-    // });
+    log('get firebase user started');
     return _firebaseAuth.authStateChanges();
   }
 
