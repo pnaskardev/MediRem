@@ -7,7 +7,6 @@ import 'package:medi_rem/common/navbar/bloc/cubit/navigation_cubit.dart';
 import 'package:medi_rem/firebase_options.dart';
 import 'package:medi_rem/logic/app_bloc/app_bloc.dart';
 import 'package:medi_rem/logic/medicine_bloc/medicine_bloc.dart';
-import 'package:medi_rem/logic/user_data_bloc/user_data_bloc.dart';
 import 'package:medi_rem/repository/auth_repository.dart';
 import 'package:medi_rem/utils/themes.dart';
 
@@ -44,7 +43,6 @@ class MyApp extends StatelessWidget
             authRepository: _authRepository
           )),
           BlocProvider(create: (BuildContext context) => NavigationCubit()),
-          BlocProvider(create: (BuildContext context) => UserDataBloc()),
           BlocProvider(create: (BuildContext context) => MedicineBloc()),
         ],
         child: MaterialApp
