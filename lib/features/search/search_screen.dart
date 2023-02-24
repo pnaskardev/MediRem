@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:medi_rem/utils/string_validator.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});

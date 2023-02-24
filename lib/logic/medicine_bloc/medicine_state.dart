@@ -1,6 +1,6 @@
 part of 'medicine_bloc.dart';
 
-abstract class MedicineState extends Equatable 
+class MedicineState extends Equatable 
 {
   Medicine? medicine;
   MedicineState({this.medicine});
