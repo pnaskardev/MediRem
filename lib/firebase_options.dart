@@ -63,7 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '906107278895',
     projectId: 'medirem-6391d',
     storageBucket: 'medirem-6391d.appspot.com',
-    iosClientId: '906107278895-4m1lqod95afqi8gecqp5docs7579o1mr.apps.googleusercontent.com',
+    iosClientId:
+        '906107278895-4m1lqod95afqi8gecqp5docs7579o1mr.apps.googleusercontent.com',
     iosBundleId: 'com.medirem.priyanshunaskar',
   );
 }

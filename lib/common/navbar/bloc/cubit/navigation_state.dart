@@ -1,7 +1,6 @@
 part of 'navigation_cubit.dart';
 
-class NavigationState extends Equatable 
-{
+class NavigationState extends Equatable {
   final int index;
   const NavigationState({required this.index});
   @override
