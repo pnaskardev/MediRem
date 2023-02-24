@@ -5,6 +5,8 @@ import 'package:flutterfire_ui/auth.dart';
 import 'package:medi_rem/auth_gate.dart';
 import 'package:medi_rem/common/navbar/bloc/cubit/navigation_cubit.dart';
 import 'package:medi_rem/firebase_options.dart';
+import 'package:medi_rem/logic/medicine_bloc/medicine_bloc.dart';
+import 'package:medi_rem/logic/user_data_bloc/user_data_bloc.dart';
 import 'package:medi_rem/utils/themes.dart';
 
 Future<void> main() async {
@@ -22,9 +24,13 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
+    return MultiBlocProvider
+    (
+      providers: 
+      [
         BlocProvider(create: (BuildContext context) => NavigationCubit()),
+        BlocProvider(create: (BuildContext context) => UserDataBloc()),
+        BlocProvider(create: (BuildContext context) => MedicineBloc()),
       ],
       child: MaterialApp(
         title: 'MediRem',
