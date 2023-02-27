@@ -16,8 +16,18 @@ class MedicineApiLoadingState extends MedicineApiState
 
 class MedicineApiLoadedState extends MedicineApiState
 {
+  final List<ApiMedicines> medicineList;
+  MedicineApiLoadedState({required this.medicineList});
    @override
-  List<Object> get props => [];
+  List<Object> get props => [medicineList];
+}
+
+class MedicineApiErrorState extends MedicineApiState
+{
+  final String error;
+  MedicineApiErrorState({required this.error});
+   @override
+  List<Object> get props => [error];
 }
 
 
