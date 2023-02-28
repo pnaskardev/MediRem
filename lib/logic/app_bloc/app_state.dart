@@ -6,7 +6,8 @@ class AppState extends Equatable
 {
   final AppStatus status;
   final  UserData user;
-  const AppState._({
+  const AppState._
+  ({
     required this.status,
     this.user=UserData.empty,
   });
@@ -25,5 +26,7 @@ class AppState extends Equatable
   @override
   List<Object> get props => [status,UserData];
 }
+
+
 
 
