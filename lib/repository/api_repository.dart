@@ -7,13 +7,15 @@ import 'package:http/http.dart' as http;
 import 'package:medi_rem/models/apiMedicine.dart';
 class ApiRepository
 {
-  Future<List<ApiMedicines>> getMedicineList() async
+  Future<List<ApiMedicines>> getMedicineList(String query) async
   {
+    log('insede getMedicineList');
+    log(query);
     final queryParameters = 
     {
-      'searchterm': 'paracetamol',
+      'searchterm': query,
     };
-    List<ApiMedicines>? tempList;
+    List<ApiMedicines> tempList=[];
     try 
     {
       var response=await http.get
@@ -33,12 +35,20 @@ class ApiRepository
       );  
 
       var jsonData=jsonDecode(response.body);
-      jsonData["data"].forEach
+      // jsonData["data"].forEach
+      // (
+      //   (v)
+      //   {
+      //     var res=ApiMedicines.fromJson(v);
+      //     tempList!.add(res);
+      //   }
+      // );
+      jsonData["data"]["medicines"].forEach
       (
         (v)
         {
           var res=ApiMedicines.fromJson(v);
-          tempList!.add(res);
+          tempList.add(res);
         }
       );
 
@@ -47,6 +57,6 @@ class ApiRepository
       log(e.toString());
       throw Exception(e);
     }
-    return tempList==null ?[]:tempList; 
+    return tempList; 
   }
 }

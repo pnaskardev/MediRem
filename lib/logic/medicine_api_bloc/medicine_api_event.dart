@@ -10,6 +10,8 @@ abstract class MedicineApiEvent extends Equatable
 
 class LoadMedicineListEvent extends MedicineApiEvent
 {
+  String query;
+  LoadMedicineListEvent({required this.query});
   @override
-  List<Object> get props => [];
+  List<Object> get props => [query];
 }

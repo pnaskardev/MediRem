@@ -6,6 +6,7 @@ import 'package:medi_rem/auth_gate.dart';
 import 'package:medi_rem/common/navbar/bloc/cubit/navigation_cubit.dart';
 import 'package:medi_rem/firebase_options.dart';
 import 'package:medi_rem/logic/app_bloc/app_bloc.dart';
+import 'package:medi_rem/logic/medicine_api_bloc/medicine_api_bloc.dart';
 import 'package:medi_rem/repository/api_repository.dart';
 import 'package:medi_rem/repository/auth_repository.dart';
 import 'package:medi_rem/utils/themes.dart';
@@ -20,14 +21,16 @@ Future<void> main() async
     const EmailProviderConfiguration(),
   ]);
   final _authRepository=AuthRepository();
-  runApp(MyApp(authRepository: _authRepository,));
+  final _apiRepository=ApiRepository();
+  runApp(MyApp(authRepository: _authRepository,apiRepository: _apiRepository,));
 }
 
 class MyApp extends StatelessWidget 
 {
   final AuthRepository _authRepository;
-  const MyApp({super.key,required authRepository})
-  : _authRepository=authRepository;
+  final ApiRepository _apiRepository;
+  const MyApp({super.key,required authRepository,required apiRepository})
+  : _authRepository=authRepository, _apiRepository=apiRepository;
   @override
   Widget build(BuildContext context) 
   {
@@ -43,7 +46,10 @@ class MyApp extends StatelessWidget
             authRepository: _authRepository
           )),
           BlocProvider(create: (BuildContext context) => NavigationCubit()),
-          // BlocProvider(create: (BuildContext context) => MedicineApiBloc()),
+          BlocProvider(create: (BuildContext context) => MedicineApiBloc
+          (
+            apiRepository: _apiRepository
+          )),
           RepositoryProvider(create: (context)=>ApiRepository())
         ],
         child: MaterialApp

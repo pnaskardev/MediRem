@@ -11,7 +11,7 @@ part 'medicine_api_state.dart';
 class MedicineApiBloc extends Bloc<MedicineApiEvent, MedicineApiState> 
 {
   final ApiRepository _apiRepository;
-  MedicineApiBloc({required apiRepository}) :_apiRepository=apiRepository, super(MedicineApiLoadingState()) 
+  MedicineApiBloc({required apiRepository}) :_apiRepository=apiRepository, super(MedicineApiInitial()) 
   {
     on<LoadMedicineListEvent>((event, emit) async
     {
@@ -19,11 +19,13 @@ class MedicineApiBloc extends Bloc<MedicineApiEvent, MedicineApiState>
       log('first state emitted');
       try 
       {
-        final medicineList = await _apiRepository.getMedicineList();
+        log('inside try');
+        final medicineList = await _apiRepository.getMedicineList(event.query);
         emit(MedicineApiLoadedState(medicineList: medicineList));
       } 
       catch (e) 
       {
+        log(e.toString());
         emit(MedicineApiErrorState(error: e.toString()));
       }
       

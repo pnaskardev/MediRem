@@ -7,7 +7,11 @@ abstract class MedicineApiState extends Equatable
   // @override
   // List<Object> get props => [];
 }
-// class MedicineApiInitial extends MedicineApiState {}
+class MedicineApiInitial extends MedicineApiState 
+{
+  @override
+  List<Object?> get props => [];
+}
 class MedicineApiLoadingState extends MedicineApiState
 {
    @override
