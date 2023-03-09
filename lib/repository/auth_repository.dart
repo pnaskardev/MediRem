@@ -89,6 +89,6 @@ extension on User
 {
   UserData get toUserData
   {
-    return UserData(uid: uid,email: email);
+    return UserData(uid: uid,email: email!);
   }
 }

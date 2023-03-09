@@ -4,11 +4,11 @@ import 'package:medi_rem/models/medicine.dart';
 class UserData extends Equatable
 {
   final String uid;
-  final String? email;
+  final String email;
   final List<Medicine>? medicineList;
-  const UserData({required this.uid, this.email,this.medicineList});
+  const UserData({required this.uid,required this.email,this.medicineList});
 
-  static const  empty =UserData(uid:'');
+  static const empty =UserData(uid:'',email: '',medicineList: []);
 
   bool get isEmpty=> this==UserData.empty;
   bool get isNotEmpty=> this!=UserData.empty;

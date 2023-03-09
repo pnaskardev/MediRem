@@ -12,6 +12,7 @@ class AppBloc extends Bloc<AppEvent, AppState>
 {
   final AuthRepository _authRepository;
   StreamSubscription<UserData?>? _userSubscription;
+
   AppBloc({required AuthRepository authRepository}):_authRepository=authRepository,
   super
   (
@@ -25,6 +26,18 @@ class AppBloc extends Bloc<AppEvent, AppState>
     {
       return add(AppUserChanged(user: user));
     });
+
+    // medSubscription=medCubit.stream.listen((medicineState)
+    // {
+    //   if(medicineState is AddItemEvent)
+    //   {
+    //     if(state.user.isNotEmpty)
+    //     {
+    //       return add(AddMedicineToUser(user: state.user,medList: medicineState.list));
+    //       // add([...state.user.medicineList!, medicineState.list]);
+    //     }
+    //   }
+    // });
 
     on<AppUserChanged>((event, emit) 
     {
@@ -41,7 +54,8 @@ class AppBloc extends Bloc<AppEvent, AppState>
     {
       unawaited(_authRepository.logOut());
     });
-
+    
+    @override
     Future<void> close()
     {
       _userSubscription?.cancel();
@@ -51,9 +65,9 @@ class AppBloc extends Bloc<AppEvent, AppState>
   }
 
   
-    get getUser
-    {
-      return state.user;
-    }
+  get getUser
+  {
+    return state.user;
+  }
 
 }
