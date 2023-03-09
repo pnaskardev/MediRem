@@ -3,7 +3,10 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:medi_rem/logic/medicine_cubit/medicine_cubit.dart';
+import 'package:medi_rem/models/medicine.dart';
 import 'package:medi_rem/utils/string_validator.dart';
 
 class AddMedicine extends StatefulWidget 
@@ -20,7 +23,17 @@ class _AddMedicineState extends State<AddMedicine>
   final TextEditingController _description = TextEditingController();
   final TextEditingController _freq = TextEditingController();
   final TextEditingController _duration = TextEditingController();
-  List time=['10:00','11:00','15:00'];
+  List<DateTime> selectedTime=[];
+  @override
+  void dispose() 
+  {
+    super.dispose();
+    _medicationName.dispose();
+    _description.dispose();
+    _freq.dispose();
+    _duration.dispose();
+  }
+
   @override
   Widget build(BuildContext context)
    {
@@ -114,7 +127,7 @@ class _AddMedicineState extends State<AddMedicine>
                 ),
                 const SizedBox(height: 10,),
                     TextFormField(
-                      readOnly: true,
+                      // readOnly: true,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       decoration: const InputDecoration(
                         labelText: "Reminder Frequency",
@@ -158,7 +171,7 @@ class _AddMedicineState extends State<AddMedicine>
                       [
                         Flexible
                         (
-                          child: time.isNotEmpty ? Card(
+                          child: selectedTime.isNotEmpty ? Card(
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: GridView.builder
@@ -168,18 +181,18 @@ class _AddMedicineState extends State<AddMedicine>
                                 (
                                   crossAxisCount: 3,
                                 ),
-                                itemCount: time.length,
+                                itemCount: selectedTime.length,
                                 itemBuilder: (BuildContext context,int index)
                                 {
                                   return Chip
                                   (
-                                    label:Text(time[index]),
+                                    label:Text(selectedTime[index].toString()),
                                     deleteIcon: const Icon(Icons.delete), 
                                     onDeleted: ()
                                     {
                                       setState(() 
                                       {
-                                        time.removeAt(index);  
+                                        selectedTime.removeAt(index);  
                                       });
                                     },
                                   );
@@ -216,7 +229,7 @@ class _AddMedicineState extends State<AddMedicine>
                                 log(formattedTime);
                                 setState(() 
                                 {
-                                  time.add(formattedTime); //set the value of text field. 
+                                  selectedTime.add(parsedTime); //set the value of text field. 
                                 });
                               }, 
                               icon: const Icon(Icons.add), 
@@ -275,6 +288,22 @@ class _AddMedicineState extends State<AddMedicine>
                   )),
             ),
           ),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: FloatingActionButton.extended
+        (
+          onPressed: ()
+          {
+            Medicine item=Medicine
+            (
+              name: _medicationName.text,
+              freq: int.parse(_freq.text),
+              timeList: selectedTime,
+              days: int.parse(_duration.text)
+            );
+            BlocProvider.of<MedicineCubit>(context).addItem(item);
+          }, 
+          label: const Text('Add Medicine')
         ),
       ),
     );

@@ -2,7 +2,7 @@ part of 'medicine_cubit.dart';
 
 class MedicineState extends Equatable 
 {
-  List<Medicine> list;
+  final List<Medicine> list;
   MedicineState({required this.list});
   @override
   List<Object> get props => [];

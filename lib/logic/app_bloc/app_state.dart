@@ -12,6 +12,11 @@ class AppState extends Equatable
     this.user=UserData.empty,
   });
   
+  const AppState.medicineChanged(UserData user):this._
+  (
+    status: AppStatus.authenticated,
+    user: user
+  );
   const AppState.authenticated(UserData user):this._
   (
     status: AppStatus.authenticated,

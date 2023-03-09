@@ -22,3 +22,11 @@ class AppUserChanged extends AppEvent
   List<Object> get props => [user];
 }
 
+class AddMedicineToUser extends AppEvent
+{
+  final UserData user;
+  List<Medicine> medList;
+  AddMedicineToUser({required this.user,required this.medList});
+  List<Object> get props => [user];
+}
+
