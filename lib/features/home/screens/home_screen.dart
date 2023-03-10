@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medi_rem/features/add_medicine/add_medicine.dart';
 import 'package:medi_rem/features/home/widgets/medicine_card.dart';
 import 'package:medi_rem/logic/medicine_cubit/medicine_cubit.dart';
 
@@ -29,6 +30,22 @@ class HomePage extends StatelessWidget {
                   return MedicineCard(med: state.list[index]);
                 },
               )
+            ),
+            floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+            floatingActionButton: FloatingActionButton.extended
+            (
+              onPressed: ()
+              {
+                Navigator.of(context).push
+                (
+                   MaterialPageRoute
+                  (
+                    builder: (context) =>  const AddMedicine(),
+                  )
+                );
+              },
+              icon: const Icon(Icons.add), 
+              label: const Text('Add Medication')
             ),
           ),
         );

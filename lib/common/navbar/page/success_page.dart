@@ -60,14 +60,8 @@ Widget contButton(BuildContext context)
   (
       onPressed: () 
       {
-        // Navigator.of(context).push(
-        //   MaterialPageRoute(
-        //     builder: (context) => AppBottomNavBar(),
-        //   ),
-        // );
         BlocProvider.of<NavigationCubit>(context).changePage(0);
         Navigator.of(context).pop();
-        
       },
       child: Container(
         height: 30,

@@ -6,7 +6,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:medi_rem/common/navbar/bloc/cubit/navigation_cubit.dart';
 import 'package:medi_rem/common/navbar/page/success_page.dart';
 import 'package:medi_rem/logic/medicine_cubit/medicine_cubit.dart';
 import 'package:medi_rem/models/medicine.dart';
@@ -291,7 +290,8 @@ class _AddMedicineState extends State<AddMedicine>
                       controller: _duration,
                     ),
                     ],
-                  )),
+                )
+              ),
             ),
           ),
         ),
@@ -310,19 +310,13 @@ class _AddMedicineState extends State<AddMedicine>
               days: int.parse(_duration.text)
             );
             BlocProvider.of<MedicineCubit>(context).addItem(item);
-            _formKey.currentState!.reset();
-            Navigator.of(context).push
+            Navigator.of(context).pushReplacement
             (
               MaterialPageRoute
               (
                 builder: (context) =>  const SuccessPage(),
               )
-            ).then((value) 
-              {
-                setState(() {
-                  
-                });
-              });
+            );
           }, 
           label: const Text('Add Medicine')
         ),

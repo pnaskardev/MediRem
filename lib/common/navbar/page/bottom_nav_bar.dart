@@ -37,7 +37,7 @@ class _AppBottomNavBarState extends State<AppBottomNavBar> {
         controller: controller,
         children: const [
           HomePage(),
-          AddMedicine(),
+          // AddMedicine(),
           SearchScreen(),
           SettingsPage()
         ],
@@ -73,10 +73,10 @@ class _AppBottomNavBarState extends State<AppBottomNavBar> {
                   icon: Icon(Icons.home),
                   label: 'Home',
                 ),
-                NavigationDestination(
-                  icon: Icon(Icons.add_alarm),
-                  label: 'Add Medication',
-                ),
+                // NavigationDestination(
+                //   icon: Icon(Icons.add_alarm),
+                //   label: 'Add Medication',
+                // ),
                 NavigationDestination(
                   icon: Icon(Icons.search_rounded),
                   label: 'Search',
