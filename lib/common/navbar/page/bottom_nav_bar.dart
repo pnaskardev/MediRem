@@ -37,7 +37,6 @@ class _AppBottomNavBarState extends State<AppBottomNavBar> {
         controller: controller,
         children: const [
           HomePage(),
-          // AddMedicine(),
           SearchScreen(),
           SettingsPage()
         ],
@@ -51,11 +50,6 @@ class _AppBottomNavBarState extends State<AppBottomNavBar> {
         listener: (context, state) 
         {
           currentPageIndex = state.index;
-          controller.animateToPage
-          (
-            state.index,duration: const Duration(milliseconds: 250),
-            curve: Curves.easeIn
-          );
           log(currentPageIndex.toString());
         },
         builder: (context, state) {
