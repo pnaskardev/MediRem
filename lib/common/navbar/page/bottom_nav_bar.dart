@@ -48,8 +48,14 @@ class _AppBottomNavBarState extends State<AppBottomNavBar> {
         },
       ),
       bottomNavigationBar: BlocConsumer<NavigationCubit, NavigationState>(
-        listener: (context, state) {
+        listener: (context, state) 
+        {
           currentPageIndex = state.index;
+          controller.animateToPage
+          (
+            state.index,duration: const Duration(milliseconds: 250),
+            curve: Curves.easeIn
+          );
           log(currentPageIndex.toString());
         },
         builder: (context, state) {

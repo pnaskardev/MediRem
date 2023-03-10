@@ -1,10 +1,13 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'dart:developer';
+import 'dart:developer' as dev;
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:medi_rem/common/navbar/bloc/cubit/navigation_cubit.dart';
+import 'package:medi_rem/common/navbar/page/success_page.dart';
 import 'package:medi_rem/logic/medicine_cubit/medicine_cubit.dart';
 import 'package:medi_rem/models/medicine.dart';
 import 'package:medi_rem/utils/string_validator.dart';
@@ -19,6 +22,7 @@ class AddMedicine extends StatefulWidget
 
 class _AddMedicineState extends State<AddMedicine> 
 {
+  final _formKey = GlobalKey<FormState>();  
   final TextEditingController _medicationName = TextEditingController();
   final TextEditingController _description = TextEditingController();
   final TextEditingController _freq = TextEditingController();
@@ -44,7 +48,9 @@ class _AddMedicineState extends State<AddMedicine>
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: SingleChildScrollView(
-              child: Form(
+              child: Form
+              (
+                key: _formKey,
                   child: Column
                   (
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -222,11 +228,11 @@ class _AddMedicineState extends State<AddMedicine>
                                   context: context, 
                                   initialTime: TimeOfDay.now()
                                 );
-                                log(pickedTime!.format(context));
+                                dev.log(pickedTime!.format(context));
                                 DateTime parsedTime = DateFormat.jm().parse(pickedTime.format(context).toString());
-                                log(parsedTime.toString());
+                                dev.log(parsedTime.toString());
                                 String formattedTime = DateFormat('HH:mm:ss').format(parsedTime);
-                                log(formattedTime);
+                                dev.log(formattedTime);
                                 setState(() 
                                 {
                                   selectedTime.add(parsedTime); //set the value of text field. 
@@ -292,16 +298,31 @@ class _AddMedicineState extends State<AddMedicine>
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingActionButton.extended
         (
-          onPressed: ()
+          onPressed: () async
           {
             Medicine item=Medicine
             (
+              id: (Random().nextInt(1000)+1).toString(),
               name: _medicationName.text,
+              description: _description.text,
               freq: int.parse(_freq.text),
               timeList: selectedTime,
               days: int.parse(_duration.text)
             );
             BlocProvider.of<MedicineCubit>(context).addItem(item);
+            _formKey.currentState!.reset();
+            Navigator.of(context).push
+            (
+              MaterialPageRoute
+              (
+                builder: (context) =>  const SuccessPage(),
+              )
+            ).then((value) 
+              {
+                setState(() {
+                  
+                });
+              });
           }, 
           label: const Text('Add Medicine')
         ),

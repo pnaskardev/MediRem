@@ -1,16 +1,23 @@
 import 'dart:core';
 
-class Medicine {
+class Medicine 
+{
+  final String id;
   final String name;
   final String? description;
   final int freq;
   final List<DateTime> timeList;
   final int days;
 
-  Medicine(
-      {required this.name,
+  Medicine
+  (
+    {
+      required this.id,
+      required this.name,
       this.description,
       required this.freq,
       required this.timeList,
-      required this.days});
+      required this.days
+    }
+  );
 }
